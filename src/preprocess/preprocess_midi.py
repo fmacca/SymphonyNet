@@ -366,6 +366,18 @@ def get_pos_and_cc(split_score):
 
     return new_event_seq
 
+def compute_texture_events(orch):
+    """Turns an Orch object into a 
+
+    Args:
+        orch (Orch): _description_
+
+    Returns:
+        list: _description_
+    """
+    # TODO: implement it
+
+    return None #texture_events
 
 def event_seq_to_str(new_event_seq):
     char_events = []
@@ -396,13 +408,14 @@ def event_seq_to_str(new_event_seq):
             char_events.append('RZ')
             char_events.append('TZ')
             char_events.append('YZ')
+        # TODO: elif evt[1] == 'TXT: # Texture events
         else:
             assert False, ("evt type error", evt[1])
     return char_events
 
 
 # abs_pos type pitch program is_drum track_id duration/rela_pos
-def midi_to_event_seq_str(midi_file_path, readonly=False):
+def midi_to_event_seq_str(midi_file_path, readonly=False): #(midi_file_path, orch_file_path=None, readonly=False)
     p_midi = MidiFile(midi_file_path)
     for ins in p_midi.instruments:
         ins.remove_invalid_notes(verbose=False)
@@ -428,6 +441,10 @@ def midi_to_event_seq_str(midi_file_path, readonly=False):
         split_score[measure_idx].insert(1, chord_evt)
 
     new_event_seq = get_pos_and_cc(split_score)
+
+    # TODO: texture_events = compute_texture_events(orch_file_path) # Use the TextureTokenizer object!
+
+    # TODO: new_events_seq = insert_texture_events(new_events_seq, texture_events)
 
     char_events = event_seq_to_str(new_event_seq)
 
