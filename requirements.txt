@@ -6,6 +6,6 @@ more_itertools
 p_tqdm
 miditoolkit
 chorder
-scipy
+scipy==1.9.0
 matplotlib
 pytorch-fast-transformers==0.4.0
